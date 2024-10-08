@@ -67,4 +67,14 @@ export class UpdateBookDto extends PartialType(CreateBookDto) {
   @Type(() => Date)
   @IsDate()
   publishedDate?: Date;
+
+  @ApiProperty({
+    example: 40,
+    description: 'Number of stocks available for the book',
+    minimum: 0,
+    required: false,
+  })
+  @IsInt()
+  @Min(0)
+  stocks?: number;
 }

@@ -29,4 +29,7 @@ export class Book {
 
   @Column({ type: 'timestamptz' })
   publishedDate: Date;
+
+  @Column()
+  stocks: number;
 }

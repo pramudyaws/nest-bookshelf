@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateBookDto } from './dto/create-book.dto';
@@ -25,13 +25,16 @@ export class BookService {
   async findOne(bookId: number) {
     const book = await this.bookRepository.findOne({ where: { id: bookId } });
     if (!book) {
-      throw new Error(`Book with ID ${bookId} not found`);
+      throw new NotFoundException(`Book with ID ${bookId} not found`);
     }
     return book;
   }
 
   async update(bookId: number, updateBookDto: UpdateBookDto) {
     const book = await this.findOne(bookId);
+    if (!book) {
+      throw new NotFoundException(`Book with ID ${bookId} not found`);
+    }
     const updatedBook = Object.assign(book, updateBookDto);
     await this.bookRepository.save(updatedBook);
     return updatedBook;
@@ -39,6 +42,9 @@ export class BookService {
 
   async remove(bookId: number) {
     const book = await this.findOne(bookId);
+    if (!book) {
+      throw new NotFoundException(`Book with ID ${bookId} not found`);
+    }
     await this.bookRepository.remove(book);
     return `Book with ID ${bookId} has been removed`;
   }

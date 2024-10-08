@@ -59,4 +59,13 @@ export class CreateBookDto {
   @Type(() => Date)
   @IsDate()
   publishedDate: Date;
+
+  @ApiProperty({
+    example: 50,
+    description: 'Number of stocks available for the book',
+    minimum: 0,
+  })
+  @IsInt()
+  @Min(0)
+  stocks: number;
 }
