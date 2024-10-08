@@ -22,24 +22,24 @@ export class BookService {
     return this.bookRepository.find();
   }
 
-  async findOne(id: number) {
-    const book = await this.bookRepository.findOne({ where: { id: id } });
+  async findOne(bookId: number) {
+    const book = await this.bookRepository.findOne({ where: { id: bookId } });
     if (!book) {
-      throw new Error(`Book with ID ${id} not found`);
+      throw new Error(`Book with ID ${bookId} not found`);
     }
     return book;
   }
 
-  async update(id: number, updateBookDto: UpdateBookDto) {
-    const book = await this.findOne(id);
+  async update(bookId: number, updateBookDto: UpdateBookDto) {
+    const book = await this.findOne(bookId);
     const updatedBook = Object.assign(book, updateBookDto);
     await this.bookRepository.save(updatedBook);
     return updatedBook;
   }
 
-  async remove(id: number) {
-    const book = await this.findOne(id);
+  async remove(bookId: number) {
+    const book = await this.findOne(bookId);
     await this.bookRepository.remove(book);
-    return `Book with ID ${id} has been removed`;
+    return `Book with ID ${bookId} has been removed`;
   }
 }
