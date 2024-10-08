@@ -9,6 +9,6 @@ export const databaseConfig = async (configService: ConfigService): Promise<Type
     username: configService.get<string>('DB_USER'),
     password: configService.get<string>('DB_PASSWORD'),
     database: configService.get<string>('DB_NAME'),
-    entities: [join(__dirname, '../**', '*.entity.{ts,js}')],
+    entities: [join(__dirname, '../../**', '*.entity.{ts,js}')],
     synchronize: configService.get<string>('NODE_ENV') === 'development',
 });
