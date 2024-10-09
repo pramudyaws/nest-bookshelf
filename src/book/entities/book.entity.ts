@@ -1,7 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column, Unique } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column } from 'typeorm';
 
 @Entity({ name: 'books' })
-@Unique(['title'])
 export class Book {
   @PrimaryGeneratedColumn()
   id: number;
@@ -12,7 +11,7 @@ export class Book {
   @UpdateDateColumn({ type: 'timestamptz' })
   updatedAt: Date;
 
-  @Column()
+  @Column({ unique: true })
   title: string;
 
   @Column()
