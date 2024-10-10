@@ -8,6 +8,11 @@ import { ApiTags } from '@nestjs/swagger';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @Get()
+  findAll() {
+    return this.userService.findAll();
+  }
+
   @Get(':userId')
   findOne(@Param('userId') userId: string) {
     return this.userService.findOne(+userId);

@@ -12,6 +12,11 @@ export class UserService {
     private readonly userRepository: Repository<User>,
   ) {}
 
+  async findAll() {
+    const users = await this.userRepository.find();
+    return users.map(({ password, ...userData }) => userData);
+  }
+
   async findOne(userId: number) {
     const user = await this.userRepository.findOne({ where: { id: userId } });
     if (!user) {
