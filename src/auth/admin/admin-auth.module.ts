@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -6,6 +6,7 @@ import { AdminAuthService } from './admin-auth.service';
 import { AdminAuthController } from './admin-auth.controller';
 import { Admin } from 'src/admin/entities/admin.entity';
 
+@Global()
 @Module({
   imports: [
     TypeOrmModule.forFeature([Admin]),
@@ -19,6 +20,6 @@ import { Admin } from 'src/admin/entities/admin.entity';
     }),
   ],
   controllers: [AdminAuthController],
-  providers: [AdminAuthService],
+  providers: [AdminAuthService]
 })
 export class AdminAuthModule {}
