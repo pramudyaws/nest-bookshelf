@@ -20,6 +20,7 @@ import { Admin } from 'src/admin/entities/admin.entity';
     }),
   ],
   controllers: [AdminAuthController],
-  providers: [AdminAuthService]
+  providers: [AdminAuthService],
+  exports: [JwtModule]
 })
 export class AdminAuthModule {}
