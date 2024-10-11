@@ -18,7 +18,7 @@ export class UserBookLoanController {
     return await this.userBookLoanService.borrowBook(+req.user.id, createBookLoanDto);
   }
 
-  @Patch('return/:bookLoanId')
+  @Post('return/:bookLoanId')
   async returnBook(@Req() req: any, @Param('bookLoanId') bookLoanId: string) {
     return await this.userBookLoanService.returnBook(+req.user.id, +bookLoanId);
   }

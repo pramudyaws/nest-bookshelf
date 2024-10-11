@@ -123,6 +123,19 @@ export class AdminBookLoanService {
   }
 
   async remove(bookLoanId: number) {
-    return await this.bookLoanRepository.delete(bookLoanId);
+    const bookLoan = await this.findOne(bookLoanId);
+    if (!bookLoan || !bookLoan.book) {
+      throw new NotFoundException('Book loan or book not found');
+    }
+
+    // Add 1 to book stocks and save to book repository, if book has not been returned
+    if (!bookLoan.returnedAt) {
+      bookLoan.book.stocks += 1;
+      await this.bookLoanRepository.manager.save(bookLoan.book);
+    }
+
+    await this.bookLoanRepository.delete(bookLoanId);
+    return `Book Loan with ID ${bookLoanId} has been removed`;
   }
+
 }

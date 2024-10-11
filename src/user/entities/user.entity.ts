@@ -1,4 +1,3 @@
-import { Exclude } from 'class-transformer';
 import { BookLoan } from 'src/book-loan/entities/book-loan.entity';
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 
@@ -17,7 +16,6 @@ export class User {
     email: string;
 
     @Column()
-    @Exclude()
     password: string;
 
     @Column()
