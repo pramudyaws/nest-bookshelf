@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Exclude } from 'class-transformer';
+import { BookLoan } from 'src/book-loan/entities/book-loan.entity';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 
 @Entity({ name: 'users' })
 export class User {
@@ -15,6 +17,7 @@ export class User {
     email: string;
 
     @Column()
+    @Exclude()
     password: string;
 
     @Column()
@@ -25,4 +28,7 @@ export class User {
 
     @Column({ type: 'timestamptz', nullable: true })
     lastLoginAt: Date;
+
+    @OneToMany(() => BookLoan, (bookLoan) => bookLoan.user)
+    bookLoans: BookLoan[];
 }

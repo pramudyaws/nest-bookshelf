@@ -9,6 +9,7 @@ import { UserModule } from './user/user.module';
 import { AdminModule } from './admin/admin.module';
 import { UserAuthModule } from './auth/user/user-auth.module';
 import { AdminAuthModule } from './auth/admin/admin-auth.module';
+import { BookLoanModule } from './book-loan/book-loan.module';
 
 @Module({
   imports: [
@@ -22,8 +23,9 @@ import { AdminAuthModule } from './auth/admin/admin-auth.module';
     AdminAuthModule,
     UserAuthModule,
     AdminModule,
-    BookModule,
     UserModule,
+    BookModule,
+    BookLoanModule,
   ],
   controllers: [AppController],
   providers: [AppService],
