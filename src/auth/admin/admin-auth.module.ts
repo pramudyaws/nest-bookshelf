@@ -14,7 +14,7 @@ import { Admin } from 'src/admin/entities/admin.entity';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
-        secret: configService.get<string>('JWT_SECRET'),
+        secret: configService.get<string>('ADMIN_JWT_SECRET'),
         signOptions: { expiresIn: '1d' },
       }),
     }),

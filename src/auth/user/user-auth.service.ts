@@ -32,7 +32,7 @@ export class UserAuthService {
         user.lastLoginAt = new Date();
         await this.userRepository.save(user);
     
-        const accessToken = this.jwtService.sign({ id: user.id, email: user.email, role: 'user' });
+        const accessToken = this.jwtService.sign({ id: user.id, email: user.email });
     
         const { password: _, ...result } = user;
     

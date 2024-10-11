@@ -53,7 +53,7 @@ export class AdminAuthService {
         await this.adminRepository.save(admin);
 
         // Generate JWT tokens
-        const accessToken = this.jwtService.sign({ id: admin.id, email: admin.email, role: 'admin' });
+        const accessToken = this.jwtService.sign({ id: admin.id, email: admin.email });
 
         // Return admin data without the password, and access token
         const { password: _, ...result } = admin;

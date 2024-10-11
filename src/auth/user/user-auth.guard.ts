@@ -16,10 +16,6 @@ export class UserAuthGuard implements CanActivate {
     const token = authorization.split(' ')[1];
     const payload = this.jwtService.verify(token);
 
-    if (payload.role !== 'user') {
-      throw new UnauthorizedException('You are not authorized as a user');
-    }
-
     request.user = payload;
     return true;
   }

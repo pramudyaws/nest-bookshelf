@@ -16,10 +16,6 @@ export class AdminAuthGuard implements CanActivate {
     const token = authorization.split(' ')[1];
     const payload = this.jwtService.verify(token);
 
-    if (payload.role !== 'admin') {
-      throw new UnauthorizedException('You are not authorized as an admin');
-    }
-
     request.user = payload;
     return true;
   }
