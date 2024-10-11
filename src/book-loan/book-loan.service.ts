@@ -81,11 +81,19 @@ export class UserBookLoanService {
       }
     }
 
-    return await this.bookLoanRepository.find({ where: where, relations: { user: true, book: true } });
+    return await this.bookLoanRepository.find({
+      where: where,
+      relations: { user: true, book: true },
+      select: { user: { id: true, createdAt: true, updatedAt: true, email: true, name: true, phoneNumber: true, lastLoginAt: true } }
+    });
   }
 
   async findOne(userId: number, bookLoanId: number) {
-    const bookLoan = await this.bookLoanRepository.findOne({ relations: { user: true, book: true }, where: { id: bookLoanId } });
+    const bookLoan = await this.bookLoanRepository.findOne({
+      relations: { user: true, book: true },
+      where: { id: bookLoanId },
+      select: { user: { id: true, createdAt: true, updatedAt: true, email: true, name: true, phoneNumber: true, lastLoginAt: true } }
+    });
     if (bookLoan.user.id !== userId) {
       throw new UnauthorizedException('You don\'t have permission to see this book loan detail')
     }
@@ -115,11 +123,19 @@ export class AdminBookLoanService {
       }
     }
 
-    return await this.bookLoanRepository.find({ where: where, relations: { user: true, book: true } });
+    return await this.bookLoanRepository.find({
+      where: where,
+      relations: { user: true, book: true },
+      select: { user: { id: true, createdAt: true, updatedAt: true, email: true, name: true, phoneNumber: true, lastLoginAt: true } }
+    });
   }
 
   async findOne(bookLoanId: number) {
-    return await this.bookLoanRepository.findOne({ relations: { user: true, book: true }, where: { id: bookLoanId } });
+    return await this.bookLoanRepository.findOne({
+      relations: { user: true, book: true },
+      where: { id: bookLoanId },
+      select: { user: { id: true, createdAt: true, updatedAt: true, email: true, name: true, phoneNumber: true, lastLoginAt: true } }
+    });
   }
 
   async remove(bookLoanId: number) {
