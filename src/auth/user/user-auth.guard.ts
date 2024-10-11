@@ -14,7 +14,7 @@ export class UserAuthGuard implements CanActivate {
     const authorization = request.headers.authorization;
 
     if (!authorization) {
-      throw new UnauthorizedException('Authorization token is missing');
+      throw new UnauthorizedException('User authorization token is missing');
     }
 
     const token = authorization.split(' ')[1];
