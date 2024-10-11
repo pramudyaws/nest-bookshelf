@@ -1,5 +1,6 @@
 import { IsEmail, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { Trim } from 'src/shared/decorators/trim.decorator';
 
 export class LoginUserDto {
     @ApiProperty({
@@ -7,6 +8,7 @@ export class LoginUserDto {
         description: 'Email address of the user',
     })
     @IsEmail()
+    @Trim()
     email: string;
 
     @ApiProperty({
@@ -14,5 +16,6 @@ export class LoginUserDto {
         description: 'Password of the user, at least 8 characters long',
     })
     @IsString()
+    @Trim()
     password: string;
 }

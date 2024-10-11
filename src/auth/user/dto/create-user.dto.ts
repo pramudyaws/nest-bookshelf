@@ -1,5 +1,6 @@
 import { IsString, IsEmail, MinLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { Trim } from 'src/shared/decorators/trim.decorator';
 
 export class CreateUserDto {
   @ApiProperty({
@@ -7,6 +8,7 @@ export class CreateUserDto {
     description: 'Email address of the user',
   })
   @IsEmail()
+  @Trim()
   email: string;
 
   @ApiProperty({
@@ -15,6 +17,7 @@ export class CreateUserDto {
     minLength: 8,
   })
   @IsString()
+  @Trim()
   @MinLength(8)
   password: string;
 
@@ -23,6 +26,7 @@ export class CreateUserDto {
     description: 'Name of the user',
   })
   @IsString()
+  @Trim()
   name: string;
 
   @ApiProperty({
@@ -30,5 +34,6 @@ export class CreateUserDto {
     description: 'Phone number of the user',
   })
   @IsString()
+  @Trim()
   phoneNumber: string;
 }

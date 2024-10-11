@@ -1,6 +1,7 @@
 import { IsOptional, IsString, IsEnum, IsInt } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
+import { Trim } from 'src/shared/decorators/trim.decorator';
 
 export class AdminFindAllBookLoanQueryDto {
   @ApiPropertyOptional({
@@ -20,6 +21,7 @@ export class AdminFindAllBookLoanQueryDto {
   })
   @IsOptional()
   @IsString()
+  @Trim()
   @IsEnum(['returned', 'unreturned'], { message: 'Status must be returned or unreturned' })
   status?: string;
 }
@@ -32,6 +34,7 @@ export class UserFindAllBookLoanQueryDto {
   })
   @IsOptional()
   @IsString()
+  @Trim()
   @IsEnum(['returned', 'unreturned'], { message: 'Status must be returned or unreturned' })
   status?: string;
 }

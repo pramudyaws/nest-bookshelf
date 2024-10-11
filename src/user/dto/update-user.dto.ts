@@ -2,6 +2,7 @@ import { IsString, IsEmail, IsOptional, MinLength } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { CreateUserDto } from 'src/auth/user/dto/create-user.dto';
 import { PartialType } from '@nestjs/mapped-types';
+import { Trim } from 'src/shared/decorators/trim.decorator';
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {
   @ApiPropertyOptional({
@@ -10,6 +11,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   })
   @IsOptional()
   @IsEmail()
+  @Trim()
   email?: string;
 
   @ApiPropertyOptional({
@@ -19,6 +21,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   })
   @IsOptional()
   @IsString()
+  @Trim()
   @MinLength(8)
   password?: string;
 
@@ -28,6 +31,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   })
   @IsOptional()
   @IsString()
+  @Trim()
   name?: string;
 
   @ApiPropertyOptional({
@@ -36,5 +40,6 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   })
   @IsOptional()
   @IsString()
+  @Trim()
   phoneNumber?: string;
 }

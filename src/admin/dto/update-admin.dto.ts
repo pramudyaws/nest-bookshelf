@@ -2,6 +2,7 @@ import { IsString, IsEmail, IsOptional, MinLength } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateAdminDto } from 'src/auth/admin/dto/create-admin.dto';
+import { Trim } from 'src/shared/decorators/trim.decorator';
 
 export class UpdateAdminDto extends PartialType(CreateAdminDto) {
   @ApiPropertyOptional({
@@ -10,6 +11,7 @@ export class UpdateAdminDto extends PartialType(CreateAdminDto) {
   })
   @IsOptional()
   @IsEmail()
+  @Trim()
   email?: string;
 
   @ApiPropertyOptional({
@@ -19,6 +21,7 @@ export class UpdateAdminDto extends PartialType(CreateAdminDto) {
   })
   @IsOptional()
   @IsString()
+  @Trim()
   @MinLength(8)
   password?: string;
 
@@ -28,5 +31,6 @@ export class UpdateAdminDto extends PartialType(CreateAdminDto) {
   })
   @IsOptional()
   @IsString()
+  @Trim()
   name?: string;
 }
