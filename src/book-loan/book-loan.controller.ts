@@ -4,7 +4,7 @@ import { CreateBookLoanDto } from './dto/create-book-loan.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { UserAuthGuard } from 'src/auth/user/user-auth.guard';
 import { AdminAuthGuard } from 'src/auth/admin/admin-auth.guard';
-import { FindAllBookLoanQueryDto } from './dto/find-all-book-loan-query.dto';
+import { AdminFindAllBookLoanQueryDto, UserFindAllBookLoanQueryDto } from './dto/find-all-book-loan-query.dto';
 
 @Controller('user/book-loans')
 @ApiTags("User - Book Loans")
@@ -24,9 +24,8 @@ export class UserBookLoanController {
   }
 
   @Get()
-  async findAll(@Req() req: any, @Query() query: FindAllBookLoanQueryDto) {
-    const { status } = query;
-    return await this.userBookLoanService.findAll(+req.user.id, status);
+  async findAll(@Req() req: any, @Query() query: UserFindAllBookLoanQueryDto) {
+    return await this.userBookLoanService.findAll(+req.user.id, query.status);
   }
 
   @Get(':bookLoanId')
@@ -43,9 +42,8 @@ export class AdminBookLoanController {
   constructor(private readonly adminBookLoanService: AdminBookLoanService) {}
 
   @Get()
-  async findAll(@Query() query: FindAllBookLoanQueryDto) {
-    const { userId, status } = query;
-    return await this.adminBookLoanService.findAll(userId, status);
+  async findAll(@Query() query: AdminFindAllBookLoanQueryDto) {
+    return await this.adminBookLoanService.findAll(query.userId, query.status);
   }
 
   @Get(':bookLoanId')
