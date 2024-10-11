@@ -11,11 +11,22 @@ export class AdminAuthController {
 
     @Post('register')
     async register(@Body() createAdminDto: CreateAdminDto) {
-        return this.adminAuthService.register(createAdminDto);
+        const admin = await this.adminAuthService.register(createAdminDto);
+        return {
+            ...admin,
+            password: undefined,
+        }
     }
 
     @Post('login')
     async login(@Body() loginAdminDto: LoginAdminDto) {
-        return this.adminAuthService.login(loginAdminDto);
+        const { admin, accessToken } = await this.adminAuthService.login(loginAdminDto);
+        return {
+            admin: {
+                ...admin,
+                password: undefined,
+            },
+            accessToken
+        }
     }
 }

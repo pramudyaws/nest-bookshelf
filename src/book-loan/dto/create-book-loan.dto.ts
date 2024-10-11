@@ -3,14 +3,6 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateBookLoanDto {
   @ApiProperty({
-    description: 'ID of the user borrowing the book',
-    type: Number,
-    example: 1,
-  })
-  @IsInt()
-  userId: number;
-
-  @ApiProperty({
     description: 'ID of the borrowed book',
     type: Number,
     example: 1,

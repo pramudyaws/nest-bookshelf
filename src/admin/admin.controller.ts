@@ -12,22 +12,22 @@ export class AdminController {
   constructor(private readonly adminService: AdminService) {}
 
   @Get()
-  findAll() {
-    return this.adminService.findAll();
+  async findAll() {
+    return await this.adminService.findAll();
   }
 
   @Get(':adminId')
-  findOne(@Param('adminId') adminId: string) {
-    return this.adminService.findOne(+adminId);
+  async findOne(@Param('adminId') adminId: string) {
+    return await this.adminService.findOne(+adminId);
   }
 
   @Patch(':adminId')
-  update(@Param('adminId') adminId: string, @Body() updateAdminDto: UpdateAdminDto) {
-    return this.adminService.update(+adminId, updateAdminDto);
+  async update(@Param('adminId') adminId: string, @Body() updateAdminDto: UpdateAdminDto) {
+    return await this.adminService.update(+adminId, updateAdminDto);
   }
 
   @Delete(':adminId')
-  remove(@Param('adminId') adminId: string) {
-    return this.adminService.remove(+adminId);
+  async remove(@Param('adminId') adminId: string) {
+    return await this.adminService.remove(+adminId);
   }
 }

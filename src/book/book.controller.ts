@@ -14,13 +14,13 @@ export class UserBookController {
   constructor(private readonly userBookService: UserBookService) { }
 
   @Get()
-  findAll() {
-    return this.userBookService.findAll();
+  async findAll() {
+    return await this.userBookService.findAll();
   }
 
   @Get(':bookId')
-  findOne(@Param('bookId') bookId: string) {
-    return this.userBookService.findOne(+bookId);
+  async findOne(@Param('bookId') bookId: string) {
+    return await this.userBookService.findOne(+bookId);
   }
 }
 
@@ -32,27 +32,27 @@ export class AdminBookController {
   constructor(private readonly adminBookService: AdminBookService) { }
 
   @Post()
-  create(@Body() createBookDto: CreateBookDto) {
-    return this.adminBookService.create(createBookDto);
+  async create(@Body() createBookDto: CreateBookDto) {
+    return await this.adminBookService.create(createBookDto);
   }
 
   @Get()
-  findAll() {
-    return this.adminBookService.findAll();
+  async findAll() {
+    return await this.adminBookService.findAll();
   }
 
   @Get(':bookId')
-  findOne(@Param('bookId') bookId: string) {
-    return this.adminBookService.findOne(+bookId);
+  async findOne(@Param('bookId') bookId: string) {
+    return await this.adminBookService.findOne(+bookId);
   }
 
   @Patch(':bookId')
-  update(@Param('bookId') bookId: string, @Body() updateBookDto: UpdateBookDto) {
-    return this.adminBookService.update(+bookId, updateBookDto);
+  async update(@Param('bookId') bookId: string, @Body() updateBookDto: UpdateBookDto) {
+    return await this.adminBookService.update(+bookId, updateBookDto);
   }
 
   @Delete(':bookId')
-  remove(@Param('bookId') bookId: string) {
-    return this.adminBookService.remove(+bookId);
+  async remove(@Param('bookId') bookId: string) {
+    return await this.adminBookService.remove(+bookId);
   }
 }

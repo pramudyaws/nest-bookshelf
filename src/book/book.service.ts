@@ -13,7 +13,7 @@ export class UserBookService {
   ) { }
 
   async findAll() {
-    return this.bookRepository.find();
+    return await this.bookRepository.find();
   }
 
   async findOne(bookId: number) {
@@ -39,7 +39,7 @@ export class AdminBookService {
   }
 
   async findAll() {
-    return this.bookRepository.find();
+    return await this.bookRepository.find();
   }
 
   async findOne(bookId: number) {
