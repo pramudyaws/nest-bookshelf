@@ -7,9 +7,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { databaseConfig } from './shared/configs/database.config';
 import { UserModule } from './user/user.module';
 import { AdminModule } from './admin/admin.module';
-import { UserAuthModule } from './auth/user/user-auth.module';
-import { AdminAuthModule } from './auth/admin/admin-auth.module';
 import { BookLoanModule } from './book-loan/book-loan.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -20,8 +19,7 @@ import { BookLoanModule } from './book-loan/book-loan.module';
       useFactory: databaseConfig,
       inject: [ConfigService],
     }),
-    AdminAuthModule,
-    UserAuthModule,
+    AuthModule,
     AdminModule,
     UserModule,
     BookModule,
