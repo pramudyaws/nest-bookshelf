@@ -18,9 +18,12 @@ export class UserAuthGuard implements CanActivate {
     }
 
     const token = authorization.split(' ')[1];
-    const payload = this.jwtService.verify(token, { secret: this.configService.getOrThrow('USER_JWT_SECRET') || '' });
-
-    request.user = payload;
-    return true;
+    try {
+      const payload = this.jwtService.verify(token, { secret: this.configService.getOrThrow('USER_JWT_SECRET') || '' });
+      request.user = payload;
+      return true;
+    } catch (error) {
+      throw new UnauthorizedException('You are not authorized as user');
+    }
   }
 }
