@@ -1,8 +1,8 @@
 import { IsString, IsEmail, IsOptional, MinLength } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { CreateUserDto } from 'src/auth/user/dto/create-user.dto';
+import { CreateUserDto } from '../../auth/user/dto/create-user.dto';
 import { PartialType } from '@nestjs/mapped-types';
-import { Trim } from 'src/shared/decorators/trim.decorator';
+import { Trim } from '../../shared/decorators/trim.decorator';
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {
   @ApiPropertyOptional({

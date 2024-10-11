@@ -2,7 +2,7 @@ import { Controller, Get, Body, Patch, Param, Delete, UseGuards } from '@nestjs/
 import { AdminService } from './admin.service';
 import { UpdateAdminDto } from './dto/update-admin.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { AdminAuthGuard } from 'src/auth/admin/admin-auth.guard';
+import { AdminAuthGuard } from '../auth/admin/admin-auth.guard';
 
 @Controller('admin/account')
 @ApiTags('Admin - Account Management')

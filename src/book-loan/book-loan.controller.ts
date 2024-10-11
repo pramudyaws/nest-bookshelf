@@ -2,8 +2,8 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query, Re
 import { UserBookLoanService, AdminBookLoanService } from './book-loan.service';
 import { CreateBookLoanDto } from './dto/create-book-loan.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { UserAuthGuard } from 'src/auth/user/user-auth.guard';
-import { AdminAuthGuard } from 'src/auth/admin/admin-auth.guard';
+import { UserAuthGuard } from '../auth/user/user-auth.guard';
+import { AdminAuthGuard } from '../auth/admin/admin-auth.guard';
 import { AdminFindAllBookLoanQueryDto, UserFindAllBookLoanQueryDto } from './dto/find-all-book-loan-query.dto';
 
 @Controller('user/book-loans')

@@ -2,8 +2,8 @@ import { Controller, Get, Body, Patch, Param, Delete, UseGuards, Req } from '@ne
 import { UserService, AdminUserService } from './user.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { AdminAuthGuard } from 'src/auth/admin/admin-auth.guard';
-import { UserAuthGuard } from 'src/auth/user/user-auth.guard';
+import { AdminAuthGuard } from '../auth/admin/admin-auth.guard';
+import { UserAuthGuard } from '../auth/user/user-auth.guard';
 
 @Controller('user/account')
 @ApiTags('User - Account Management')

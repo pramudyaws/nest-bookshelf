@@ -5,7 +5,7 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { LoginAdminDto } from './dto/login-admin.dto';
-import { Admin } from 'src/admin/entities/admin.entity';
+import { Admin } from '../../admin/entities/admin.entity';
 
 @Injectable()
 export class AdminAuthService {

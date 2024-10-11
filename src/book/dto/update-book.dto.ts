@@ -3,7 +3,7 @@ import { CreateBookDto } from './create-book.dto';
 import { IsString, IsInt, IsNumber, IsDate, Min, Max } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { Trim } from 'src/shared/decorators/trim.decorator';
+import { Trim } from '../../shared/decorators/trim.decorator';
 
 export class UpdateBookDto extends PartialType(CreateBookDto) {
   @ApiProperty({

@@ -1,8 +1,8 @@
 import { IsString, IsEmail, IsOptional, MinLength } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { PartialType } from '@nestjs/mapped-types';
-import { CreateAdminDto } from 'src/auth/admin/dto/create-admin.dto';
-import { Trim } from 'src/shared/decorators/trim.decorator';
+import { CreateAdminDto } from '../../auth/admin/dto/create-admin.dto';
+import { Trim } from '../../shared/decorators/trim.decorator';
 
 export class UpdateAdminDto extends PartialType(CreateAdminDto) {
   @ApiPropertyOptional({

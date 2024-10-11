@@ -1,6 +1,6 @@
 import { IsEmail, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { Trim } from 'src/shared/decorators/trim.decorator';
+import { Trim } from '../../../shared/decorators/trim.decorator';
 
 export class LoginAdminDto {
     @ApiProperty({

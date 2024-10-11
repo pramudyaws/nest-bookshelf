@@ -3,8 +3,8 @@ import { UserBookService, AdminBookService } from './book.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { AdminAuthGuard } from 'src/auth/admin/admin-auth.guard';
-import { UserAuthGuard } from 'src/auth/user/user-auth.guard';
+import { AdminAuthGuard } from '../auth/admin/admin-auth.guard';
+import { UserAuthGuard } from '../auth/user/user-auth.guard';
 
 @Controller('user/books')
 @ApiTags('User - Books')

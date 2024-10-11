@@ -1,7 +1,7 @@
 import { IsOptional, IsString, IsEnum, IsInt } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { Trim } from 'src/shared/decorators/trim.decorator';
+import { Trim } from '../../shared/decorators/trim.decorator';
 
 export class AdminFindAllBookLoanQueryDto {
   @ApiPropertyOptional({
