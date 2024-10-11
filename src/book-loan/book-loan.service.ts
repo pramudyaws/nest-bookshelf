@@ -8,7 +8,7 @@ import { User } from 'src/user/entities/user.entity';
 import { addDays } from 'date-fns';
 
 @Injectable()
-export class BookLoanService {
+export class UserBookLoanService {
   constructor(
     @InjectRepository(BookLoan)
     private readonly bookLoanRepository: Repository<BookLoan>,
@@ -65,6 +65,36 @@ export class BookLoanService {
 
     return bookLoan;
   }
+
+  async findAll(userId?: number, status?: string) {
+    const where: any = {};
+
+    if (userId) {
+      where.user = { id: userId };
+    }
+
+    if (status) {
+      if (status === 'returned') {
+        where.returnedAt = Not(IsNull());
+      } else if (status === 'unreturned') {
+        where.returnedAt = IsNull();
+      }
+    }
+
+    return await this.bookLoanRepository.find({ where: where, relations: { user: true, book: true } });
+  }
+
+  findOne(bookLoanId: number) {
+    return this.bookLoanRepository.findOne({ relations: { user: true, book: true }, where: { id: bookLoanId } });
+  }
+}
+
+@Injectable()
+export class AdminBookLoanService {
+  constructor(
+    @InjectRepository(BookLoan)
+    private readonly bookLoanRepository: Repository<BookLoan>,
+  ) { }
 
   async findAll(userId?: number, status?: string) {
     const where: any = {};

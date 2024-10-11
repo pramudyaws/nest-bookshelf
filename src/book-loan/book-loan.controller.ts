@@ -1,45 +1,60 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
-import { BookLoanService } from './book-loan.service';
+import { UserBookLoanService, AdminBookLoanService } from './book-loan.service';
 import { CreateBookLoanDto } from './dto/create-book-loan.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { UserAuthGuard } from 'src/auth/user/user-auth.guard';
 import { AdminAuthGuard } from 'src/auth/admin/admin-auth.guard';
 import { FindAllBookLoanQueryDto } from './dto/find-all-book-loan-query.dto';
 
-@Controller('book-loans')
-@ApiTags("Book Loans")
+@Controller('user/book-loans')
+@ApiTags("User - Book Loans")
 @ApiBearerAuth()
-export class BookLoanController {
-  constructor(private readonly bookLoanService: BookLoanService) {}
+@UseGuards(UserAuthGuard)
+export class UserBookLoanController {
+  constructor(private readonly userBookLoanService: UserBookLoanService) {}
 
   @Post('borrow')
-  @UseGuards(UserAuthGuard)
   borrowBook(@Body() createBookLoanDto: CreateBookLoanDto) {
-    return this.bookLoanService.borrowBook(createBookLoanDto);
+    return this.userBookLoanService.borrowBook(createBookLoanDto);
   }
 
   @Patch('return/:bookLoanId')
-  @UseGuards(UserAuthGuard)
   returnBook(@Param('bookLoanId') bookLoanId: string) {
-    return this.bookLoanService.returnBook(+bookLoanId);
+    return this.userBookLoanService.returnBook(+bookLoanId);
   }
 
   @Get()
-  @UseGuards(UserAuthGuard, AdminAuthGuard)
   findAll(@Query() query: FindAllBookLoanQueryDto) {
     const { userId, status } = query;
-    return this.bookLoanService.findAll(userId, status);
+    return this.userBookLoanService.findAll(userId, status);
   }
 
   @Get(':bookLoanId')
-  @UseGuards(UserAuthGuard, AdminAuthGuard)
   findOne(@Param('bookLoanId') bookLoanId: string) {
-    return this.bookLoanService.findOne(+bookLoanId);
+    return this.userBookLoanService.findOne(+bookLoanId);
+  }
+}
+
+@Controller('admin/book-loans')
+@ApiTags("Admin - Book Loans Management")
+@ApiBearerAuth()
+@UseGuards(AdminAuthGuard)
+export class AdminBookLoanController {
+  constructor(private readonly adminBookLoanService: AdminBookLoanService) {}
+
+  @Get()
+  findAll(@Query() query: FindAllBookLoanQueryDto) {
+    const { userId, status } = query;
+    return this.adminBookLoanService.findAll(userId, status);
+  }
+
+  @Get(':bookLoanId')
+  findOne(@Param('bookLoanId') bookLoanId: string) {
+    return this.adminBookLoanService.findOne(+bookLoanId);
   }
 
   @Delete(':bookLoanId')
-  @UseGuards(AdminAuthGuard)
   remove(@Param('bookLoanId') bookLoanId: string) {
-    return this.bookLoanService.remove(+bookLoanId);
+    return this.adminBookLoanService.remove(+bookLoanId);
   }
 }

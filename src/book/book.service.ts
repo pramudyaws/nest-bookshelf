@@ -6,7 +6,27 @@ import { UpdateBookDto } from './dto/update-book.dto';
 import { Book } from './entities/book.entity';
 
 @Injectable()
-export class BookService {
+export class UserBookService {
+  constructor(
+    @InjectRepository(Book)
+    private readonly bookRepository: Repository<Book>,
+  ) { }
+
+  async findAll() {
+    return this.bookRepository.find();
+  }
+
+  async findOne(bookId: number) {
+    const book = await this.bookRepository.findOne({ where: { id: bookId } });
+    if (!book) {
+      throw new NotFoundException(`Book with ID ${bookId} not found`);
+    }
+    return book;
+  }
+}
+
+@Injectable()
+export class AdminBookService {
   constructor(
     @InjectRepository(Book)
     private readonly bookRepository: Repository<Book>,

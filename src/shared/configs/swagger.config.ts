@@ -10,5 +10,7 @@ export function initializeSwagger(app: INestApplication<any>) {
         .addBearerAuth()
         .build();
     const document = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup('api/v1', app, document);
+    SwaggerModule.setup('api/v1', app, document, {
+        swaggerOptions: { defaultModelsExpandDepth: -1, tagsSorter: 'alpha' },
+    });
 }

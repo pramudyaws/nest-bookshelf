@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { BookLoanService } from './book-loan.service';
-import { BookLoanController } from './book-loan.controller';
+import { UserBookLoanService, AdminBookLoanService } from './book-loan.service';
+import { UserBookLoanController, AdminBookLoanController } from './book-loan.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BookLoan } from './entities/book-loan.entity';
 import { Book } from 'src/book/entities/book.entity';
@@ -10,7 +10,7 @@ import { User } from 'src/user/entities/user.entity';
   imports: [
     TypeOrmModule.forFeature([BookLoan, Book, User]),
   ],
-  controllers: [BookLoanController],
-  providers: [BookLoanService],
+  controllers: [UserBookLoanController, AdminBookLoanController],
+  providers: [UserBookLoanService, AdminBookLoanService],
 })
 export class BookLoanModule {}

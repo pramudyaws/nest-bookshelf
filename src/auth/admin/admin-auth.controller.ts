@@ -4,8 +4,8 @@ import { CreateAdminDto } from './dto/create-admin.dto';
 import { LoginAdminDto } from './dto/login-admin.dto';
 import { ApiTags } from '@nestjs/swagger';
 
-@Controller('auth/admins')
-@ApiTags('Auth')
+@Controller('admin/auth')
+@ApiTags('Admin - Auth')
 export class AdminAuthController {
     constructor(private readonly adminAuthService: AdminAuthService) { }
 
