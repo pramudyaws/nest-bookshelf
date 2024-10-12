@@ -4,7 +4,7 @@ import { UpdateAdminDto } from './dto/update-admin.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AdminAuthGuard } from '../auth/admin/admin-auth.guard';
 
-@Controller('admin/account')
+@Controller('v1/admin/account')
 @ApiTags('Admin - Account Management')
 @ApiBearerAuth()
 @UseGuards(AdminAuthGuard)
