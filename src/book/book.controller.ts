@@ -6,7 +6,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AdminAuthGuard } from '../auth/admin/admin-auth.guard';
 import { UserAuthGuard } from '../auth/user/user-auth.guard';
 
-@Controller('user/books')
+@Controller('v1/user/books')
 @ApiTags('User - Books')
 @ApiBearerAuth()
 @UseGuards(UserAuthGuard)
@@ -24,7 +24,7 @@ export class UserBookController {
   }
 }
 
-@Controller('admin/books')
+@Controller('v1/admin/books')
 @ApiTags('Admin - Books Management')
 @ApiBearerAuth()
 @UseGuards(AdminAuthGuard)

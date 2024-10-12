@@ -6,7 +6,7 @@ import { UserAuthGuard } from '../auth/user/user-auth.guard';
 import { AdminAuthGuard } from '../auth/admin/admin-auth.guard';
 import { AdminFindAllBookLoanQueryDto, UserFindAllBookLoanQueryDto } from './dto/find-all-book-loan-query.dto';
 
-@Controller('user/book-loans')
+@Controller('v1/user/book-loans')
 @ApiTags("User - Book Loans")
 @ApiBearerAuth()
 @UseGuards(UserAuthGuard)
@@ -34,7 +34,7 @@ export class UserBookLoanController {
   }
 }
 
-@Controller('admin/book-loans')
+@Controller('v1/admin/book-loans')
 @ApiTags("Admin - Book Loans Management")
 @ApiBearerAuth()
 @UseGuards(AdminAuthGuard)
