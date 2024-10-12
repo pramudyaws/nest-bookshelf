@@ -30,7 +30,8 @@ $ npm run test:e2e
 
 ## API Documentation
 
-After running the project, visit http://localhost:3000/api/v1 to see Swagger API Documentation
+After running the project, visit `http://localhost:{PORT}/api/v1` to see the Swagger API Documentation. 
+> **Note:** Replace `{PORT}` with the actual port number defined in your `.env` file.
 
 ## Design Patterns
 
