@@ -23,6 +23,10 @@ $ npm run start:dev
 
 ## Run tests
 
+Before running e2e tests, please ensure that you have test accounts with this credentials:
+- admin account with email: `admin.test@mail.com`, and password: `password`
+- user account with email: `user.test@mail.com`, and password: `password`
+
 ```bash
 # e2e tests
 $ npm run test:e2e
